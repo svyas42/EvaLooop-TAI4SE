@@ -1,0 +1,5 @@
+2026-10-30 16:41:11,271 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 16:41:11,271 [INFO] evaloop: Validating EvaLoop setup
+2026-10-30 16:41:19,020 [WARNING] matplotlib.font_manager: Matplotlib is building the font cache; this may take a moment.
+2026-10-30 16:41:19,661 [INFO] matplotlib.font_manager: Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: Non-scalable fonts are not supported
+2026-10-30 16:41:20,071 [INFO] matplotlib.font_manager: generated new fontManager
