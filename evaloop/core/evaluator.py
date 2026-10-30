@@ -41,7 +41,7 @@ class EvaLoopEvaluator:
         Returns:
             List of evaluation results (single model result in list for consistency).
         """
-        self.logger.info("Starting code generation and summarization evaluation")
+        self.logger.info(f"Starting code generation and summarization evaluation (loop type: {self.config.loop_type})")
         
         # Setup components
         model = self._create_model()
@@ -53,7 +53,7 @@ class EvaLoopEvaluator:
         model_result = self._run_evaluation_cycles(model, tasks, prompts, py_problems, tester)
         
         # Save and return results
-        self._save_results([model_result], "code_generation_summarization")
+        self._save_results([model_result], self.config.loop_type)
         return [model_result]
     
     def run_code_translation(self) -> Dict[str, Any]:
@@ -77,7 +77,7 @@ class EvaLoopEvaluator:
     
     def _create_tasks(self):
         """Create task instances."""
-        task_configs = self.config.get_task_configs("code_generation_summarization")
+        task_configs = self.config.get_task_configs(self.config.loop_type)
         tasks = [self.task_factory.create_task(config) for config in task_configs]
         self.logger.info(f"Created {len(tasks)} tasks for evaluation")
         return tasks
@@ -144,6 +144,7 @@ class EvaLoopEvaluator:
             "model": str(model),
             # Loop budget M; needed by the analyzer to normalize the ASL metrics
             "max_cycles": self.config.max_cycles,
+            "loop_type": self.config.loop_type,
             "prompt_results": []
         }
         
@@ -203,8 +204,9 @@ class EvaLoopEvaluator:
         code_output = cycle_result[output_key]
         test_results = self._test_python_code(code_output, task_id, problem, tester)
         
-        # Store test results
-        test_results["plus_details"] = "".join(map(str, test_results["plus_details"]))
+        # Store test results (error results from a failed test run carry no plus_details)
+        if "plus_details" in test_results:
+            test_results["plus_details"] = "".join(map(str, test_results["plus_details"]))
         cycle_result["test_results"] = test_results
         
         return test_results.get("success", False)

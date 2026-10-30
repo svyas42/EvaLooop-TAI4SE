@@ -85,6 +85,40 @@ This is intentional, not an artifact: keeping one assert anchors the function na
 
 Want to add your own loop? A new task type is one new file plus a registry entry — no changes to the loop runner. See the [Contributing Guide](CONTRIBUTING.md).
 
+## 🌐 Multilingual Summarization Loops
+
+This fork adds two loop types in which the summaries are written in Hindi or Spanish instead of English. Everything else stays as in the standard loop, so on the same tasks a difference in ASL between the loops comes from the summary language.
+
+| `--loop_type` | Summary language |
+|---|---|
+| `code_generation_summarization` (default) | English (standard loop) |
+| `summarization_hindi` | Hindi |
+| `summarization_spanish` | Spanish |
+
+- **Summarization prompt**: the standard prompt with two changes. It asks for the sentence in the target language, and the fixed opening phrase "write a python function to" is replaced by "एक पायथन फ़ंक्शन लिखें जो" (Hindi) or "escribe una función en Python para" (Spanish). The instruction itself stays in English. The templates are in `evaloop/tasks/multilingual_prompts.py`.
+- **Generation prompt**: unchanged, so cycle 1 gets the same input as in the standard loop.
+- **Carried between cycles**: the non-English summary wrapped as a docstring together with the original prompt's assert line (the existing `CodeSummarizationTask.postprocess`, unchanged). The assert line keeps the function name and signature stable across cycles.
+- **Failure condition**: unchanged. A cycle fails when the generated code fails the MBPP+ base or plus tests; at most `--max_cycles` cycles run.
+
+```bash
+evaloop evaluate --model "Qwen/Qwen2.5-Coder-7B-Instruct" --loop_type "summarization_hindi" --seed 42
+```
+
+Results are saved as `{experiment_name}_{loop_type}_results.json`, and each results entry records its `loop_type`.
+
+### Changes to the existing framework
+
+| File | Change | Reason |
+|---|---|---|
+| `evaloop/tasks/multilingual_prompts.py` (new) | Hindi and Spanish summarization templates | Keeps the new prompts in a new file |
+| `evaloop/core/config.py` | New `loop_type` setting (validated, included in `to_dict()`); new branch in `get_task_configs()` that reuses the standard generation config and replaces only the summarization template | `get_task_configs()` is where a loop's task sequence is defined (see [CONTRIBUTING.md](CONTRIBUTING.md)) |
+| `evaloop/core/evaluator.py` | Builds tasks and names the results file from `config.loop_type` instead of the hard-coded `"code_generation_summarization"`; records `loop_type` in the results | The loop type was hard-coded |
+| `evaloop/core/evaluator.py` | Joins `plus_details` only when the test result contains it | A test error result has no `plus_details`, so the old code raised `KeyError` and stopped the run; results are written only at the end, so the whole run was lost |
+| `evaloop/cli.py` | New `--loop_type` option | Selects the loop from the command line |
+| `tests/test_multilingual.py` (new) | Offline tests for the templates, the config wiring and the `KeyError` fix | The contributing guide asks for unit tests |
+
+The loop runner (`evaloop/evaluation/cycle.py`), the task classes, the tester and the analysis code are unchanged. With the default `--loop_type`, the prompts and the results filename are the same as before.
+
 ## 🛠️ CLI Reference
 
 ### `evaluate` — Code Generation ↔ Summarization
@@ -97,6 +131,7 @@ evaloop evaluate --model MODEL [OPTIONS]
 - `--model`: A single model name or HuggingFace path (required). Examples: `"gpt-4"`, `"Qwen/Qwen2.5-Coder-32B-Instruct"`
 - `--dataset`: Dataset to use. Currently only `mbpp_plus` is supported (HumanEval is planned).
 - `--max_cycles`: Maximum evaluation cycles (default: 10)
+- `--loop_type`: `code_generation_summarization` (default), `summarization_hindi` or `summarization_spanish`; see [Multilingual Summarization Loops](#-multilingual-summarization-loops)
 - `--temperature`: Generation temperature (default: 0.0)
 - `--output_dir`: Results output directory (default: `results/`)
 - `--gpu_ids`: GPU IDs for vLLM models (e.g., `"0,1,2,3"`)

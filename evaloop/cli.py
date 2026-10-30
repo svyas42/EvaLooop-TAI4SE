@@ -92,6 +92,7 @@ class EvaLoopCLI:
         preferred_batch_size: int = 64,
         is_chat_model: bool = True,
         system_prompt: str = "You are a helpful programming assistant.",
+        loop_type: str = "code_generation_summarization",
     ) -> Dict[str, Any]:
         """
         Run code generation and summarization evaluation experiment.
@@ -128,6 +129,9 @@ class EvaLoopCLI:
             preferred_batch_size: Preferred batch size when auto-batching.
             is_chat_model: Whether the model is a chat/instruction-tuned model.
             system_prompt: System prompt for chat models.
+            loop_type: Loop to run. "code_generation_summarization" (standard loop),
+                       "summarization_hindi" or "summarization_spanish" (summaries
+                       written in Hindi or Spanish; everything else unchanged).
 
         Returns:
             Dictionary containing evaluation results with successful cycles for each task.
@@ -147,6 +151,10 @@ class EvaLoopCLI:
                              --max_new_tokens 2048 --seed 42 \\
                              --system_prompt "You are an expert Python programmer." \\
                              --experiment_name "deepseek_robust_test"
+
+            # Loop whose summaries are written in Hindi
+            evaloop evaluate --model "Qwen/Qwen2.5-Coder-7B-Instruct" \\
+                             --loop_type "summarization_hindi"
         """
         
         if dataset != "mbpp_plus":
@@ -163,6 +171,7 @@ class EvaLoopCLI:
 
         # Log model to evaluate
         self.logger.info(f"Model to evaluate: {model.strip()}")
+        self.logger.info(f"Loop type: {loop_type}")
 
         # Parse GPU IDs if provided
         gpu_id_list = None
@@ -203,6 +212,7 @@ class EvaLoopCLI:
             is_chat_model=is_chat_model,
             system_prompt=system_prompt,
             openai_api_key=openai_api_key,
+            loop_type=loop_type,
         )
         # Log model type detection results
         model_config = config.get_model_config()

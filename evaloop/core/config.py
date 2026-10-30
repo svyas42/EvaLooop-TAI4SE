@@ -5,6 +5,11 @@ from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any
 from pathlib import Path
 
+from ..tasks.multilingual_prompts import MULTILINGUAL_SUMMARIZATION_TEMPLATES
+
+STANDARD_LOOP_TYPE = "code_generation_summarization"
+SUPPORTED_LOOP_TYPES = [STANDARD_LOOP_TYPE, *MULTILINGUAL_SUMMARIZATION_TEMPLATES]
+
 
 @dataclass
 class EvaluationConfig:
@@ -22,6 +27,9 @@ class EvaluationConfig:
     temperature: float = 0.0
     top_p: float = 1.0
     batch_size: int = 1
+    
+    # Loop configuration: which pair of inverse tasks each cycle runs
+    loop_type: str = STANDARD_LOOP_TYPE
     
     # Output configuration
     output_dir: str = "results/"
@@ -74,6 +82,9 @@ class EvaluationConfig:
         if self.max_model_len <= 0:
             raise ValueError("max_model_len must be positive")
         
+        if self.loop_type not in SUPPORTED_LOOP_TYPES:
+            raise ValueError(f"loop_type must be one of {SUPPORTED_LOOP_TYPES}, got '{self.loop_type}'")
+        
         # Create output directory
         Path(self.output_dir).mkdir(parents=True, exist_ok=True)
         
@@ -113,6 +124,7 @@ class EvaluationConfig:
             "temperature": self.temperature,
             "top_p": self.top_p,
             "batch_size": self.batch_size,
+            "loop_type": self.loop_type,
             "output_dir": self.output_dir,
             "experiment_name": self.experiment_name,
             "gpu_ids": self.gpu_ids,
@@ -416,8 +428,13 @@ class EvaluationConfig:
                     "prompt_template": "Use one sentence to summarize the following code and start with 'write a python function to':\n\n```\n{code}\n```\n\n```\nwrite a python function to\n```",
                 },
             ]
+        elif task_type in MULTILINGUAL_SUMMARIZATION_TEMPLATES:
+            # Same generation task as the standard loop; only the summarization prompt changes
+            generation_config, summarization_config = self.get_task_configs(STANDARD_LOOP_TYPE)
+            summarization_config["prompt_template"] = MULTILINGUAL_SUMMARIZATION_TEMPLATES[task_type]
+            return [generation_config, summarization_config]
         elif task_type == "code_translation":
             # Code translation is not currently supported but kept as interface
             raise NotImplementedError("Code translation is not currently supported")
         else:
-            raise ValueError(f"Unsupported task type: {task_type}. Currently only 'code_generation_summarization' is supported.")
+            raise ValueError(f"Unsupported task type: {task_type}. Supported: {SUPPORTED_LOOP_TYPES}.")
