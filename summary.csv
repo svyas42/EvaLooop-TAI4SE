@@ -1,0 +1,7 @@
+model,configuration,n_tasks,success_rate,asl_score
+qwen2.5-coder-7b-instruct,standard-mbpp-plus,378,0.7222,6.2148
+qwen2.5-coder-7b-instruct,summarization_hindi,378,0.7275,4.9389
+qwen2.5-coder-7b-instruct,summarization_spanish,378,0.7249,6.1839
+seed-coder-8b-instruct,standard-mbpp-plus,378,0.7275,6.5077
+seed-coder-8b-instruct,summarization_hindi,378,0.7275,5.0704
+seed-coder-8b-instruct,summarization_spanish,378,0.7302,6.2984

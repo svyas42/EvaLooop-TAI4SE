@@ -1,0 +1,379 @@
+2026-10-30 16:47:21,571 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 16:47:21,571 [INFO] evaloop: Validating EvaLoop setup
+2026-10-30 16:49:31,230 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 16:49:31,230 [INFO] evaloop: Validating EvaLoop setup
+2026-10-30 17:06:48,269 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 17:06:48,269 [INFO] evaloop: Starting EvaLoop evaluation experiment
+2026-10-30 17:06:48,269 [INFO] evaloop: Model to evaluate: Qwen/Qwen2.5-Coder-7B-Instruct
+2026-10-30 17:06:48,269 [INFO] evaloop: Loop type: summarization_hindi
+2026-10-30 17:06:48,357 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,387 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:48,388 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-30 17:06:48,407 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,427 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,429 [INFO] evaloop: Model 'Qwen/Qwen2.5-Coder-7B-Instruct' → Using VLLM inference engine
+2026-10-30 17:06:48,429 [INFO] evaloop:   VLLM config: 1 GPUs, batch_size=64
+2026-10-30 17:06:48,429 [INFO] evaloop.core.evaluator: Initialized EvaLoopEvaluator with config: evaloop_qwen2_5_coder_7b_instruct_mbpp_plus_20261030_170648
+2026-10-30 17:06:48,429 [INFO] evaloop.core.evaluator: Starting code generation and summarization evaluation (loop type: summarization_hindi)
+2026-10-30 17:06:48,459 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:48,479 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,603 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,635 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,670 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,702 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,749 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,783 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,814 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:48,861 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:06:48,890 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:06:56,666 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,701 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,741 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,771 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:56,791 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/tokenizer_config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Ftokenizer_config.json=&etag=%22acee076f49bf3c0298e15de0909d1da7b392f0c3%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,812 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/tokenizer_config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Ftokenizer_config.json=&etag=%22acee076f49bf3c0298e15de0909d1da7b392f0c3%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,845 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-30 17:06:56,878 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,909 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/vocab.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:56,929 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/vocab.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Fvocab.json=&etag=%224783fe10ac3adce15ac8f358ef5462739852c569%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:56,949 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/vocab.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Fvocab.json=&etag=%224783fe10ac3adce15ac8f358ef5462739852c569%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,087 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/merges.txt "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:57,107 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/merges.txt?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Fmerges.txt=&etag=%2220024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,127 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/merges.txt?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Fmerges.txt=&etag=%2220024bfe7c83998e9aeaf98a0cd6a2ce6306c2f0%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,168 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:57,187 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/tokenizer.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Ftokenizer.json=&etag=%22443909a61d429dff23010e5bddd28ff530edda00%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,207 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/tokenizer.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Ftokenizer.json=&etag=%22443909a61d429dff23010e5bddd28ff530edda00%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,295 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:06:57,324 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/special_tokens_map.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:06:57,353 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-30 17:06:57,650 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,766 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,807 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/c03e6d358207e414f1eca0bb1891e29f1db0e242/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:06:57,827 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/generation_config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Fgeneration_config.json=&etag=%22b7849b3dad857bc1e227afd6ca21d1e4cb3f8f82%22 "HTTP/1.1 200 OK"
+2026-10-30 17:06:57,848 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/generation_config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fc03e6d358207e414f1eca0bb1891e29f1db0e242%2Fgeneration_config.json=&etag=%22b7849b3dad857bc1e227afd6ca21d1e4cb3f8f82%22 "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,385 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 17:10:19,386 [INFO] evaloop: Starting EvaLoop evaluation experiment
+2026-10-30 17:10:19,386 [INFO] evaloop: Model to evaluate: Qwen/Qwen2.5-Coder-7B-Instruct
+2026-10-30 17:10:19,386 [INFO] evaloop: Loop type: summarization_hindi
+2026-10-30 17:10:19,484 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:10:19,485 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-30 17:10:19,504 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,505 [INFO] evaloop: Model 'Qwen/Qwen2.5-Coder-7B-Instruct' → Using VLLM inference engine
+2026-10-30 17:10:19,505 [INFO] evaloop:   VLLM config: 1 GPUs, batch_size=64
+2026-10-30 17:10:19,505 [INFO] evaloop.core.evaluator: Initialized EvaLoopEvaluator with config: evaloop_qwen2_5_coder_7b_instruct_mbpp_plus_20261030_171019
+2026-10-30 17:10:19,505 [INFO] evaloop.core.evaluator: Starting code generation and summarization evaluation (loop type: summarization_hindi)
+2026-10-30 17:10:19,533 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:10:19,552 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,684 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,722 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,754 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,789 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,828 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,864 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:10:19,897 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:21,089 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:21,123 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:21,163 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:21,200 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-30 17:10:21,235 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:10:21,599 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:10:21,727 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:11:04,861 [INFO] evaloop.core.evaluator: Created model for evaluation: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:11:04,861 [INFO] evaloop.core.evaluator: Created 2 tasks for evaluation
+2026-10-30 17:11:05,620 [INFO] evaloop.evaluation.py_testing: Computing expected outputs...
+2026-10-30 17:11:50,888 [INFO] evaloop.evaluation.py_testing: Expected outputs computed in 45.27s
+2026-10-30 17:11:53,291 [INFO] evaloop.core.evaluator: Loaded MBPP dataset with 378 problems
+2026-10-30 17:11:53,291 [INFO] evaloop.core.evaluator: Prepared 378 prompts from MBPP dataset
+2026-10-30 17:11:54,030 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 17:11:56,964 [INFO] evaloop.core.evaluator: Evaluating model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:11:56,964 [INFO] evaloop.evaluation.cycle: Model supports batch processing - using batch mode
+2026-10-30 17:11:56,965 [INFO] evaloop.core.evaluator: Starting cycle 1/10
+2026-10-30 17:11:56,965 [INFO] evaloop.evaluation.cycle: Running cycle 1 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:11:56,965 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 378 prompts in batch
+2026-10-30 17:12:29,297 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 378 prompts in batch
+2026-10-30 17:18:46,261 [INFO] evaloop.core.evaluator: Starting cycle 2/10
+2026-10-30 17:18:46,261 [INFO] evaloop.evaluation.cycle: Running cycle 2 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:18:46,262 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 275 prompts in batch
+2026-10-30 17:19:07,641 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 275 prompts in batch
+2026-10-30 17:21:31,160 [INFO] evaloop.core.evaluator: Starting cycle 3/10
+2026-10-30 17:21:31,160 [INFO] evaloop.evaluation.cycle: Running cycle 3 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:21:31,161 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 208 prompts in batch
+2026-10-30 17:21:46,998 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 208 prompts in batch
+2026-10-30 17:23:38,296 [INFO] evaloop.core.evaluator: Starting cycle 4/10
+2026-10-30 17:23:38,296 [INFO] evaloop.evaluation.cycle: Running cycle 4 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:23:38,297 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 195 prompts in batch
+2026-10-30 17:23:52,850 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 195 prompts in batch
+2026-10-30 17:25:23,019 [INFO] evaloop.core.evaluator: Starting cycle 5/10
+2026-10-30 17:25:23,020 [INFO] evaloop.evaluation.cycle: Running cycle 5 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:25:23,020 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 191 prompts in batch
+2026-10-30 17:25:36,947 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 191 prompts in batch
+2026-10-30 17:27:22,711 [INFO] evaloop.core.evaluator: Starting cycle 6/10
+2026-10-30 17:27:22,711 [INFO] evaloop.evaluation.cycle: Running cycle 6 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:27:22,712 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 187 prompts in batch
+2026-10-30 17:27:36,224 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 187 prompts in batch
+2026-10-30 17:29:20,924 [INFO] evaloop.core.evaluator: Starting cycle 7/10
+2026-10-30 17:29:20,925 [INFO] evaloop.evaluation.cycle: Running cycle 7 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:29:20,925 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 185 prompts in batch
+2026-10-30 17:29:34,338 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 185 prompts in batch
+2026-10-30 17:31:18,996 [INFO] evaloop.core.evaluator: Starting cycle 8/10
+2026-10-30 17:31:18,996 [INFO] evaloop.evaluation.cycle: Running cycle 8 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:31:18,996 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 184 prompts in batch
+2026-10-30 17:31:32,282 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 184 prompts in batch
+2026-10-30 17:32:59,825 [INFO] evaloop.core.evaluator: Starting cycle 9/10
+2026-10-30 17:32:59,825 [INFO] evaloop.evaluation.cycle: Running cycle 9 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:32:59,826 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 184 prompts in batch
+2026-10-30 17:33:13,137 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 184 prompts in batch
+2026-10-30 17:34:57,863 [INFO] evaloop.core.evaluator: Starting cycle 10/10
+2026-10-30 17:34:57,863 [INFO] evaloop.evaluation.cycle: Running cycle 10 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:34:57,863 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 183 prompts in batch
+2026-10-30 17:35:11,206 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 183 prompts in batch
+2026-10-30 17:36:37,168 [INFO] evaloop.core.evaluator: Results saved to results/evaloop_qwen2_5_coder_7b_instruct_mbpp_plus_20261030_171019_summarization_hindi_results.json
+2026-10-30 17:36:38,359 [INFO] evaloop: Evaluation completed successfully
+2026-10-30 17:43:48,486 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 17:43:48,486 [INFO] evaloop: Starting EvaLoop evaluation experiment
+2026-10-30 17:43:48,486 [INFO] evaloop: Model to evaluate: Qwen/Qwen2.5-Coder-7B-Instruct
+2026-10-30 17:43:48,486 [INFO] evaloop: Loop type: summarization_spanish
+2026-10-30 17:43:48,578 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:43:48,579 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-30 17:43:48,598 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,598 [INFO] evaloop: Model 'Qwen/Qwen2.5-Coder-7B-Instruct' → Using VLLM inference engine
+2026-10-30 17:43:48,598 [INFO] evaloop:   VLLM config: 1 GPUs, batch_size=64
+2026-10-30 17:43:48,598 [INFO] evaloop.core.evaluator: Initialized EvaLoopEvaluator with config: evaloop_qwen2_5_coder_7b_instruct_mbpp_plus_20261030_174348
+2026-10-30 17:43:48,598 [INFO] evaloop.core.evaluator: Starting code generation and summarization evaluation (loop type: summarization_spanish)
+2026-10-30 17:43:48,628 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:43:48,647 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-Coder-7B-Instruct/c03e6d358207e414f1eca0bb1891e29f1db0e242/config.json?%2FQwen%2FQwen2.5-Coder-7B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%221a2ea88621f4248fccfb575beaf64c1ea5d9587f%22 "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,775 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,808 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,842 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,875 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,913 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,953 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:43:48,987 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:50,045 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:50,076 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:50,117 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:50,153 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-30 17:43:50,187 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:43:50,498 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:43:50,615 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-Coder-7B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:44:19,644 [INFO] evaloop.core.evaluator: Created model for evaluation: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:44:19,644 [INFO] evaloop.core.evaluator: Created 2 tasks for evaluation
+2026-10-30 17:44:19,969 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 17:44:23,352 [INFO] evaloop.core.evaluator: Loaded MBPP dataset with 378 problems
+2026-10-30 17:44:23,352 [INFO] evaloop.core.evaluator: Prepared 378 prompts from MBPP dataset
+2026-10-30 17:44:23,925 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 17:44:26,901 [INFO] evaloop.core.evaluator: Evaluating model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:44:26,901 [INFO] evaloop.evaluation.cycle: Model supports batch processing - using batch mode
+2026-10-30 17:44:26,902 [INFO] evaloop.core.evaluator: Starting cycle 1/10
+2026-10-30 17:44:26,902 [INFO] evaloop.evaluation.cycle: Running cycle 1 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:44:26,902 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 378 prompts in batch
+2026-10-30 17:44:59,188 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 378 prompts in batch
+2026-10-30 17:49:11,490 [INFO] evaloop.core.evaluator: Starting cycle 2/10
+2026-10-30 17:49:11,490 [INFO] evaloop.evaluation.cycle: Running cycle 2 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:49:11,491 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 274 prompts in batch
+2026-10-30 17:49:33,826 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 274 prompts in batch
+2026-10-30 17:50:15,023 [INFO] evaloop.core.evaluator: Starting cycle 3/10
+2026-10-30 17:50:15,023 [INFO] evaloop.evaluation.cycle: Running cycle 3 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:50:15,024 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 241 prompts in batch
+2026-10-30 17:50:34,999 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 241 prompts in batch
+2026-10-30 17:51:08,152 [INFO] evaloop.core.evaluator: Starting cycle 4/10
+2026-10-30 17:51:08,153 [INFO] evaloop.evaluation.cycle: Running cycle 4 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:51:08,153 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 235 prompts in batch
+2026-10-30 17:51:27,651 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 235 prompts in batch
+2026-10-30 17:51:59,917 [INFO] evaloop.core.evaluator: Starting cycle 5/10
+2026-10-30 17:51:59,918 [INFO] evaloop.evaluation.cycle: Running cycle 5 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:51:59,918 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 233 prompts in batch
+2026-10-30 17:52:19,167 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 233 prompts in batch
+2026-10-30 17:52:51,125 [INFO] evaloop.core.evaluator: Starting cycle 6/10
+2026-10-30 17:52:51,125 [INFO] evaloop.evaluation.cycle: Running cycle 6 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:52:51,125 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 233 prompts in batch
+2026-10-30 17:53:10,527 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 233 prompts in batch
+2026-10-30 17:53:42,761 [INFO] evaloop.core.evaluator: Starting cycle 7/10
+2026-10-30 17:53:42,761 [INFO] evaloop.evaluation.cycle: Running cycle 7 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:53:42,762 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 233 prompts in batch
+2026-10-30 17:54:01,880 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 233 prompts in batch
+2026-10-30 17:54:34,800 [INFO] evaloop.core.evaluator: Starting cycle 8/10
+2026-10-30 17:54:34,800 [INFO] evaloop.evaluation.cycle: Running cycle 8 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:54:34,800 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 233 prompts in batch
+2026-10-30 17:54:54,172 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 233 prompts in batch
+2026-10-30 17:55:33,861 [INFO] evaloop.core.evaluator: Starting cycle 9/10
+2026-10-30 17:55:33,861 [INFO] evaloop.evaluation.cycle: Running cycle 9 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:55:33,861 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 233 prompts in batch
+2026-10-30 17:55:53,038 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 233 prompts in batch
+2026-10-30 17:56:33,090 [INFO] evaloop.core.evaluator: Starting cycle 10/10
+2026-10-30 17:56:33,090 [INFO] evaloop.evaluation.cycle: Running cycle 10 with model: VllmLLM(model_name=qwen2_5_coder_7b_instruct)
+2026-10-30 17:56:33,090 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 233 prompts in batch
+2026-10-30 17:56:52,481 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 233 prompts in batch
+2026-10-30 17:57:32,143 [INFO] evaloop.core.evaluator: Results saved to results/evaloop_qwen2_5_coder_7b_instruct_mbpp_plus_20261030_174348_summarization_spanish_results.json
+2026-10-30 17:57:33,503 [INFO] evaloop: Evaluation completed successfully
+2026-10-30 17:58:17,058 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 17:58:17,058 [INFO] evaloop: Starting EvaLoop evaluation experiment
+2026-10-30 17:58:17,058 [INFO] evaloop: Model to evaluate: ByteDance-Seed/Seed-Coder-8B-Instruct
+2026-10-30 17:58:17,058 [INFO] evaloop: Loop type: summarization_hindi
+2026-10-30 17:58:17,162 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:58:17,162 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-30 17:58:17,182 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%22a2eb6258a9d677901a6c00aa7cf1f90e915dc471%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,203 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%22a2eb6258a9d677901a6c00aa7cf1f90e915dc471%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,205 [INFO] evaloop: Model 'ByteDance-Seed/Seed-Coder-8B-Instruct' → Using VLLM inference engine
+2026-10-30 17:58:17,205 [INFO] evaloop:   VLLM config: 1 GPUs, batch_size=64
+2026-10-30 17:58:17,205 [INFO] evaloop.core.evaluator: Initialized EvaLoopEvaluator with config: evaloop_seed_coder_8b_instruct_mbpp_plus_20261030_175817
+2026-10-30 17:58:17,205 [INFO] evaloop.core.evaluator: Starting code generation and summarization evaluation (loop type: summarization_hindi)
+2026-10-30 17:58:17,237 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:58:17,256 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%22a2eb6258a9d677901a6c00aa7cf1f90e915dc471%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,382 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,419 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,449 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,480 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,519 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,556 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,602 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:17,632 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:58:17,660 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:58:25,601 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:25,630 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:25,664 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:25,695 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:58:25,715 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/tokenizer_config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2F1c5af72afa21c22c9272a0b60a3a404195e88fcd%2Ftokenizer_config.json=&etag=%226c74791481be14e121cd6c3e786abe32dea265fd%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:25,735 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/tokenizer_config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2F1c5af72afa21c22c9272a0b60a3a404195e88fcd%2Ftokenizer_config.json=&etag=%226c74791481be14e121cd6c3e786abe32dea265fd%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:25,769 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-30 17:58:25,801 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 17:58:25,832 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/tokenizer.json "HTTP/1.1 302 Found"
+2026-10-30 17:58:25,866 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/xet-read-token/1c5af72afa21c22c9272a0b60a3a404195e88fcd "HTTP/1.1 200 OK"
+2026-10-30 17:58:26,846 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/tokenizer.model "HTTP/1.1 404 Not Found"
+2026-10-30 17:58:26,878 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-30 17:58:26,908 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:58:26,928 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/special_tokens_map.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2F1c5af72afa21c22c9272a0b60a3a404195e88fcd%2Fspecial_tokens_map.json=&etag=%22443f4723a076f681d9711e1e5ad0c8d3df8457bc%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:26,948 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/special_tokens_map.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2F1c5af72afa21c22c9272a0b60a3a404195e88fcd%2Fspecial_tokens_map.json=&etag=%22443f4723a076f681d9711e1e5ad0c8d3df8457bc%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:26,978 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-30 17:58:27,351 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:27,469 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 17:58:27,497 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/1c5af72afa21c22c9272a0b60a3a404195e88fcd/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 17:58:27,517 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/generation_config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2F1c5af72afa21c22c9272a0b60a3a404195e88fcd%2Fgeneration_config.json=&etag=%22091aa8d25245f6d4dd2f87c8b28b97aefa80cc53%22 "HTTP/1.1 200 OK"
+2026-10-30 17:58:27,537 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/generation_config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2F1c5af72afa21c22c9272a0b60a3a404195e88fcd%2Fgeneration_config.json=&etag=%22091aa8d25245f6d4dd2f87c8b28b97aefa80cc53%22 "HTTP/1.1 200 OK"
+2026-10-30 17:59:32,197 [INFO] evaloop.core.evaluator: Created model for evaluation: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 17:59:32,197 [INFO] evaloop.core.evaluator: Created 2 tasks for evaluation
+2026-10-30 17:59:32,641 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 17:59:36,372 [INFO] evaloop.core.evaluator: Loaded MBPP dataset with 378 problems
+2026-10-30 17:59:36,373 [INFO] evaloop.core.evaluator: Prepared 378 prompts from MBPP dataset
+2026-10-30 17:59:36,928 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 17:59:40,061 [INFO] evaloop.core.evaluator: Evaluating model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 17:59:40,061 [INFO] evaloop.evaluation.cycle: Model supports batch processing - using batch mode
+2026-10-30 17:59:40,062 [INFO] evaloop.core.evaluator: Starting cycle 1/10
+2026-10-30 17:59:40,062 [INFO] evaloop.evaluation.cycle: Running cycle 1 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 17:59:40,062 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 378 prompts in batch
+2026-10-30 18:00:19,166 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 378 prompts in batch
+2026-10-30 18:07:38,082 [INFO] evaloop.core.evaluator: Starting cycle 2/10
+2026-10-30 18:07:38,083 [INFO] evaloop.evaluation.cycle: Running cycle 2 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:07:38,084 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 275 prompts in batch
+2026-10-30 18:08:01,061 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 275 prompts in batch
+2026-10-30 18:10:54,112 [INFO] evaloop.core.evaluator: Starting cycle 3/10
+2026-10-30 18:10:54,113 [INFO] evaloop.evaluation.cycle: Running cycle 3 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:10:54,114 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 212 prompts in batch
+2026-10-30 18:11:11,900 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 212 prompts in batch
+2026-10-30 18:12:58,772 [INFO] evaloop.core.evaluator: Starting cycle 4/10
+2026-10-30 18:12:58,772 [INFO] evaloop.evaluation.cycle: Running cycle 4 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:12:58,772 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 195 prompts in batch
+2026-10-30 18:13:12,525 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 195 prompts in batch
+2026-10-30 18:14:37,401 [INFO] evaloop.core.evaluator: Starting cycle 5/10
+2026-10-30 18:14:37,401 [INFO] evaloop.evaluation.cycle: Running cycle 5 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:14:37,402 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 192 prompts in batch
+2026-10-30 18:14:49,721 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 192 prompts in batch
+2026-10-30 18:16:25,434 [INFO] evaloop.core.evaluator: Starting cycle 6/10
+2026-10-30 18:16:25,435 [INFO] evaloop.evaluation.cycle: Running cycle 6 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:16:25,435 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 191 prompts in batch
+2026-10-30 18:16:38,012 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 191 prompts in batch
+2026-10-30 18:17:55,200 [INFO] evaloop.core.evaluator: Starting cycle 7/10
+2026-10-30 18:17:55,200 [INFO] evaloop.evaluation.cycle: Running cycle 7 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:17:55,201 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 191 prompts in batch
+2026-10-30 18:18:07,748 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 191 prompts in batch
+2026-10-30 18:19:41,464 [INFO] evaloop.core.evaluator: Starting cycle 8/10
+2026-10-30 18:19:41,464 [INFO] evaloop.evaluation.cycle: Running cycle 8 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:19:41,465 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 191 prompts in batch
+2026-10-30 18:19:54,027 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 191 prompts in batch
+2026-10-30 18:21:15,409 [INFO] evaloop.core.evaluator: Starting cycle 9/10
+2026-10-30 18:21:15,410 [INFO] evaloop.evaluation.cycle: Running cycle 9 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:21:15,410 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 190 prompts in batch
+2026-10-30 18:21:32,832 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 190 prompts in batch
+2026-10-30 18:23:06,751 [INFO] evaloop.core.evaluator: Starting cycle 10/10
+2026-10-30 18:23:06,751 [INFO] evaloop.evaluation.cycle: Running cycle 10 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:23:06,751 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 190 prompts in batch
+2026-10-30 18:23:19,366 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 190 prompts in batch
+2026-10-30 18:24:36,233 [INFO] evaloop.core.evaluator: Results saved to results/evaloop_seed_coder_8b_instruct_mbpp_plus_20261030_175817_summarization_hindi_results.json
+2026-10-30 18:24:37,443 [INFO] evaloop: Evaluation completed successfully
+2026-10-30 18:25:42,813 [INFO] evaloop: Logging initialized. Level: INFO, Log file: logs/evaloop.log
+2026-10-30 18:25:42,813 [INFO] evaloop: Starting EvaLoop evaluation experiment
+2026-10-30 18:25:42,814 [INFO] evaloop: Model to evaluate: ByteDance-Seed/Seed-Coder-8B-Instruct
+2026-10-30 18:25:42,814 [INFO] evaloop: Loop type: summarization_spanish
+2026-10-30 18:25:42,906 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 18:25:42,907 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-30 18:25:42,926 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%22a2eb6258a9d677901a6c00aa7cf1f90e915dc471%22 "HTTP/1.1 200 OK"
+2026-10-30 18:25:42,927 [INFO] evaloop: Model 'ByteDance-Seed/Seed-Coder-8B-Instruct' → Using VLLM inference engine
+2026-10-30 18:25:42,927 [INFO] evaloop:   VLLM config: 1 GPUs, batch_size=64
+2026-10-30 18:25:42,927 [INFO] evaloop.core.evaluator: Initialized EvaLoopEvaluator with config: evaloop_seed_coder_8b_instruct_mbpp_plus_20261030_182542
+2026-10-30 18:25:42,927 [INFO] evaloop.core.evaluator: Starting code generation and summarization evaluation (loop type: summarization_spanish)
+2026-10-30 18:25:42,956 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-30 18:25:42,977 [INFO] httpx2: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ByteDance-Seed/Seed-Coder-8B-Instruct/1c5af72afa21c22c9272a0b60a3a404195e88fcd/config.json?%2FByteDance-Seed%2FSeed-Coder-8B-Instruct%2Fresolve%2Fmain%2Fconfig.json=&etag=%22a2eb6258a9d677901a6c00aa7cf1f90e915dc471%22 "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,104 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,145 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,184 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,218 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,257 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,294 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 18:25:43,327 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:44,391 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:44,420 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:44,455 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:44,490 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-30 18:25:44,522 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-30 18:25:44,901 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:25:45,018 [INFO] httpx2: HTTP Request: GET https://huggingface.co/api/models/ByteDance-Seed/Seed-Coder-8B-Instruct "HTTP/1.1 200 OK"
+2026-10-30 18:26:14,375 [INFO] evaloop.core.evaluator: Created model for evaluation: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:26:14,376 [INFO] evaloop.core.evaluator: Created 2 tasks for evaluation
+2026-10-30 18:26:14,691 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 18:26:18,016 [INFO] evaloop.core.evaluator: Loaded MBPP dataset with 378 problems
+2026-10-30 18:26:18,016 [INFO] evaloop.core.evaluator: Prepared 378 prompts from MBPP dataset
+2026-10-30 18:26:18,537 [INFO] evaloop.evaluation.py_testing: Loading ground-truth from /home/smvyas/.cache/evalplus/ee43ecabebf20deef4bb776a405ac5b1.pkl
+2026-10-30 18:26:21,401 [INFO] evaloop.core.evaluator: Evaluating model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:26:21,402 [INFO] evaloop.evaluation.cycle: Model supports batch processing - using batch mode
+2026-10-30 18:26:21,402 [INFO] evaloop.core.evaluator: Starting cycle 1/10
+2026-10-30 18:26:21,402 [INFO] evaloop.evaluation.cycle: Running cycle 1 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:26:21,402 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 378 prompts in batch
+2026-10-30 18:27:00,473 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 378 prompts in batch
+2026-10-30 18:31:53,518 [INFO] evaloop.core.evaluator: Starting cycle 2/10
+2026-10-30 18:31:53,518 [INFO] evaloop.evaluation.cycle: Running cycle 2 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:31:53,518 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 276 prompts in batch
+2026-10-30 18:32:24,021 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 276 prompts in batch
+2026-10-30 18:33:17,319 [INFO] evaloop.core.evaluator: Starting cycle 3/10
+2026-10-30 18:33:17,319 [INFO] evaloop.evaluation.cycle: Running cycle 3 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:33:17,320 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 249 prompts in batch
+2026-10-30 18:33:42,035 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 249 prompts in batch
+2026-10-30 18:34:21,069 [INFO] evaloop.core.evaluator: Starting cycle 4/10
+2026-10-30 18:34:21,069 [INFO] evaloop.evaluation.cycle: Running cycle 4 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:34:21,069 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 242 prompts in batch
+2026-10-30 18:34:46,664 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 242 prompts in batch
+2026-10-30 18:35:24,756 [INFO] evaloop.core.evaluator: Starting cycle 5/10
+2026-10-30 18:35:24,756 [INFO] evaloop.evaluation.cycle: Running cycle 5 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:35:24,756 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 238 prompts in batch
+2026-10-30 18:35:50,305 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 238 prompts in batch
+2026-10-30 18:36:28,000 [INFO] evaloop.core.evaluator: Starting cycle 6/10
+2026-10-30 18:36:28,000 [INFO] evaloop.evaluation.cycle: Running cycle 6 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:36:28,001 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 238 prompts in batch
+2026-10-30 18:36:53,523 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 238 prompts in batch
+2026-10-30 18:37:31,345 [INFO] evaloop.core.evaluator: Starting cycle 7/10
+2026-10-30 18:37:31,346 [INFO] evaloop.evaluation.cycle: Running cycle 7 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:37:31,346 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 238 prompts in batch
+2026-10-30 18:37:56,874 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 238 prompts in batch
+2026-10-30 18:38:34,810 [INFO] evaloop.core.evaluator: Starting cycle 8/10
+2026-10-30 18:38:34,810 [INFO] evaloop.evaluation.cycle: Running cycle 8 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:38:34,810 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 237 prompts in batch
+2026-10-30 18:38:59,518 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 237 prompts in batch
+2026-10-30 18:39:37,121 [INFO] evaloop.core.evaluator: Starting cycle 9/10
+2026-10-30 18:39:37,121 [INFO] evaloop.evaluation.cycle: Running cycle 9 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:39:37,122 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 237 prompts in batch
+2026-10-30 18:40:01,818 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 237 prompts in batch
+2026-10-30 18:40:39,605 [INFO] evaloop.core.evaluator: Starting cycle 10/10
+2026-10-30 18:40:39,605 [INFO] evaloop.evaluation.cycle: Running cycle 10 with model: VllmLLM(model_name=seed_coder_8b_instruct)
+2026-10-30 18:40:39,605 [INFO] evaloop.evaluation.cycle: Running CodeGenerationTask for 237 prompts in batch
+2026-10-30 18:41:04,319 [INFO] evaloop.evaluation.cycle: Running CodeSummarizationTask for 237 prompts in batch
+2026-10-30 18:41:41,774 [INFO] evaloop.core.evaluator: Results saved to results/evaloop_seed_coder_8b_instruct_mbpp_plus_20261030_182542_summarization_spanish_results.json
+2026-10-30 18:41:42,940 [INFO] evaloop: Evaluation completed successfully

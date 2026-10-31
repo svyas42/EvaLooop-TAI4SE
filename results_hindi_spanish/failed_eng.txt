@@ -1,0 +1,225 @@
+====================================================================================================
+qwen english | Mbpp/6 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check whether the two numbers differ at one bit position only or not.
+assert differ_At_One_Bit_Pos(13,9) == True
+"""
+-- code of cycle 1 (passed):
+def differ_At_One_Bit_Pos(x, y): 
+    return (x ^ y) and not ((x ^ y) & ((x ^ y) - 1))
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to check if two integers differ at exactly one bit position.
+-- code of cycle 2 (failed): base ok (0/6 failing), plus FAIL (19/108 failing)
+def differ_At_One_Bit_Pos(x, y):
+    return (x ^ y) & ((x ^ y) - 1) == 0
+====================================================================================================
+qwen english | Mbpp/9 | failed at cycle 3 | English run of same model sustained 2
+-- original prompt:
+"""
+Write a python function to find the minimum number of rotations (greater than 0) required to get the same string.
+assert find_Rotations("aaaa") == 1
+"""
+-- code of cycle 2 (passed):
+def find_Rotations(s):
+    n = len(s)
+    for i in range(1, n):
+        if s[i:] + s[:i] == s:
+            return i
+    return n
+-- summary written in cycle 2 (raw) = prompt of failing cycle:
+write a python function to find the smallest number of rotations needed for a string to become lexicographically smallest.
+-- code of cycle 3 (failed): base FAIL (2/3 failing), plus FAIL (99/101 failing)
+def find_Rotations(s):
+    n = len(s)
+    min_rot = s
+    for i in range(1, n):
+        rotated = s[i:] + s[:i]
+        if rotated < min_rot:
+            min_rot = rotated
+    return min_rot == s
+
+# Test the function with the provided test case
+assert find_Rotations("aaaa") == 1
+====================================================================================================
+qwen english | Mbpp/67 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to find the number of ways to partition a set of Bell numbers.
+assert bell_number(2)==2
+"""
+-- code of cycle 1 (passed):
+def bell_number(n): 
+    Bell = [[0 for i in range(n + 1)] for i in range(n + 1)] 
+    Bell[0][0] = 1
+    for i in range(1, n + 1): 
+        Bell[i][0] = Bell[i - 1][i - 1] 
+        for j in range(1, i + 1): 
+            Bell[i][j] = Bell[i - 1][j - 1] + Bell[i][j - 1] 
+    return Bell[n][0]
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to calculate the nth Bell number using dynamic programming.
+-- code of cycle 2 (failed): base FAIL (2/3 failing), plus FAIL (97/102 failing)
+def bell_number(n):
+    bell = [0] * (n + 1)
+    bell[0] = 1
+    for i in range(1, n + 1):
+        bell[i] = 0
+        for j in range(i - 1, -1, -1):
+            bell[i] += bell[j]
+    return bell[n]
+
+# Test the function with the provided test case
+assert bell_number(2) == 2
+====================================================================================================
+qwen english | Mbpp/93 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to calculate the value of 'a' to the power 'b'.
+assert power(3,4) == 81
+"""
+-- code of cycle 1 (passed):
+def power(a, b):
+    return a ** b
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to calculate the power of a number.
+-- code of cycle 2 (failed): base ok (0/3 failing), plus FAIL (26/110 failing)
+def power(x, y):
+    if y == 0:
+        return 1
+    elif y % 2 == 0:
+        return power(x, y // 2) * power(x, y // 2)
+    else:
+        return x * power(x, y // 2) * power(x, y // 2)
+
+# Test the function with the provided test case
+assert power(3, 4) == 81
+====================================================================================================
+qwen english | Mbpp/98 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to multiply all the numbers in a list and divide with the length of the list.
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+"""
+-- code of cycle 1 (passed):
+import math
+
+def multiply_num(nums):
+    product = 1
+    for num in nums:
+        product *= num
+    return product / len(nums)
+
+# Test the function with the provided test case
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to calculate the geometric mean of a list of numbers.
+-- code of cycle 2 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+import math
+
+def multiply_num(nums):
+    product = 1
+    for num in nums:
+        product *= num
+    return product
+
+def geometric_mean(nums):
+    product = multiply_num(nums)
+    n = len(nums)
+    return math.pow(abs(product), 1/n)
+
+# Test the function with the provided test case
+assert math.isclose(geometric_mean((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+====================================================================================================
+seed english | Mbpp/9 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to find the minimum number of rotations (greater than 0) required to get the same string.
+assert find_Rotations("aaaa") == 1
+"""
+-- code of cycle 1 (passed):
+def find_Rotations(s):
+    return 1 if len(set(s)) == 1 else len(s)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to determine the number of distinct rotations of a string, considering that a rotation is valid only if all characters in the string are the same.
+-- code of cycle 2 (failed): base FAIL (2/3 failing), plus FAIL (99/101 failing)
+def find_Rotations(s):
+    return 1 if all(c == s[0] for c in s) else 0
+
+assert find_Rotations("aaaa") == 1
+====================================================================================================
+seed english | Mbpp/56 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check if a given number is one less than twice its reverse.
+assert check(70) == False
+"""
+-- code of cycle 1 (passed):
+def check(n):
+    return n == 2 * int(str(n)[::-1]) - 1
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to check if a given number is a palindrome and satisfies the condition n == 2 * int(str(n)[::-1]) - 1.
+-- code of cycle 2 (failed): base FAIL (1/3 failing), plus FAIL (1/125 failing)
+def check(n):
+    return str(n) == str(n)[::-1] and n == 2 * int(str(n)[::-1]) - 1
+====================================================================================================
+seed english | Mbpp/79 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check whether the length of the word is odd or not.
+assert word_len("Hadoop") == False
+"""
+-- code of cycle 1 (passed):
+def word_len(word):
+    return len(word) % 2 != 0
+
+assert word_len("Hadoop") == False
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to check if the length of a given word is even or odd.
+-- code of cycle 2 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+def word_len(word):
+    return len(word) % 2 == 0
+
+assert word_len("Hadoop") == False
+====================================================================================================
+seed english | Mbpp/98 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to multiply all the numbers in a list and divide with the length of the list.
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+"""
+-- code of cycle 1 (passed):
+import math
+
+def multiply_num(numbers):
+    product = 1
+    for num in numbers:
+        product *= num
+    return product / len(numbers)
+
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to calculate the average of the products of all possible pairs of numbers in a given list.
+-- code of cycle 2 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+import math
+
+def multiply_num(numbers):
+    products = [a * b for i, a in enumerate(numbers) for b in numbers[i+1:]]
+    return sum(products) / len(products)
+
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+====================================================================================================
+seed english | Mbpp/105 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to count true booleans in the given list.
+assert count([True,False,True]) == 2
+"""
+-- code of cycle 1 (passed):
+def count(lst):
+    return sum(lst)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+write a python function to count the number of elements in a list.
+-- code of cycle 2 (failed): base FAIL (2/3 failing), plus FAIL (102/103 failing)
+def count(lst):
+    return len(lst)

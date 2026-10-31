@@ -1,0 +1,86 @@
+Assignment 4 Report: Multilingual Summarization Loops in EvaLoop
+
+CSC 591/791 · Sachi Vyas · Oct 31, 2026
+
+1. Extension and research question
+
+This fork adds two Option B loop types, summarization_hindi and summarization_spanish, in which each cycle's one-sentence summary is written in Hindi or Spanish instead of English. Research question: on the same 378 MBPP+ tasks, does the summary language change how many cycles a code model sustains? Expected outcome: I expected the Hindi loops to sustain more cycles than English, because Hindi has many distinct vowels, and the Spanish loops to behave like English, because both are written in the same alphabet. Hindi and Spanish were chosen because I understand both languages, so I can read the summaries myself during the manual inspection.
+
+- Prompts. Generation is unchanged: "Generate Python code for the following task: {description} Return only the code, without explanations or comments." Summarization (evaloop/tasks/multilingual_prompts.py): "Use one sentence in Hindi to summarize the following code and start with 'एक पायथन फ़ंक्शन लिखें जो':", then the code and the opening phrase in fenced blocks. Spanish uses "in Spanish" and "escribe una función en Python para"; the English baseline uses "Use one sentence to summarize …" and "write a python function to".
+- Carried between cycles. The summary, wrapped in a docstring with the input's assert line appended, is the next cycle's {description}.
+- Failure condition. The code fails the MBPP+ base or EvalPlus plus tests; at most 10 cycles.
+- Signature stability. As in the standard loop: the assert line stays in Python, so the function name and an example call reach every cycle in any language.
+
+2. The framework and the changes
+
+Pipeline. _load_dataset (evaloop/core/evaluator.py) loads the 378 MBPP+ prompts, each a docstring ending in one assert. In each cycle, BatchEvaluationCycle (evaloop/evaluation/cycle.py) sends all live tasks through the loop's two steps in batches. The generation prompt comes from EvaluationConfig.get_task_configs (evaloop/core/config.py), and extract_output keeps the reply's first fenced code block, else the whole reply. The summarization prompt is built from that code, and its reply goes through CodeSummarizationTask.postprocess. Both steps run before testing, so a failing cycle also has a summary that is never used. EvalPlus untrusted_check then runs the code on the base and plus inputs (evaloop/evaluation/py_testing.py); a cycle passes only if both pass. A passing task carries its wrapped summary into the next cycle; a failing task leaves the loop. Each task records successful_cycles, and evaloop/analysis/metrics.py computes ASL_pow = Σ n_i · i² / (T · M), with n_i the tasks that sustained exactly i cycles, T = 378 and M = 10. The judge-weighted ASL is not used.
+
+Why the assert line. postprocess re-appends the second-to-last line of the cycle's input, which is the assert line. Without it a summary could rename the function, and the tests, which call the original name, would fail for a naming reason rather than a change in meaning. The cost is that every prompt shows one example test.
+
+Changes (also listed in the README; the loop runner, tester and metrics are unchanged):
+
+| File | Change and reason |
+| evaloop/tasks/multilingual_prompts.py (new) | Hindi and Spanish summarization templates |
+| evaloop/core/config.py | loop_type setting; get_task_configs() reuses the standard generation config and swaps only the summarization template |
+| evaloop/core/evaluator.py | Tasks and the results file name follow config.loop_type (was hard-coded); plus_details is joined only when present (an error result raised KeyError and lost the run) |
+| evaloop/cli.py | --loop_type option |
+| tests/test_multilingual.py (new) | Offline tests for the templates, the config wiring and the KeyError fix |
+| scripts/make_summary_csv.py (new) | Builds summary.csv from the six results files |
+
+3. Experimental setup
+
+Each model ran once per configuration on all 378 MBPP+ tasks, with no subset: six runs, about 112 GPU-minutes, and no API cost.
+
+- Models: Qwen/Qwen2.5-Coder-7B-Instruct and ByteDance-Seed/Seed-Coder-8B-Instruct (data package ids qwen2.5-coder-7b-instruct and seed-coder-8b-instruct).
+- Configurations: code_generation_summarization (the default, English baseline), summarization_hindi and summarization_spanish, run as evaloop evaluate --model "<model>" --loop_type "<loop>" --seed 42 (no --loop_type for English).
+- Decoding: temperature 0.0 and top-p 1.0 (CLI defaults, not recorded in the results files), seed 42, at most 1024 new tokens, context length 4096, chat template with the system prompt "You are a helpful programming assistant." At most 10 cycles.
+- Inference and safety: vLLM 0.19.1 in bfloat16 on one NVIDIA L40S in an NC State VCL VM. Generated code ran only inside EvalPlus untrusted_check on that VM.
+- Baseline: my own English run of each model, on the same code and machine. The data package records serve only as a reference for "normal" failures.
+- Cost: wall time including model loading was 26 min per model for Hindi, 14 and 16 min for Spanish, and 13 and 16 min for English (Qwen, Seed-Coder). No judge or other LLM was used.
+
+4. Results and failure analysis
+
+Hindi lowers ASL_pow by 1.28 (Qwen) and 1.44 (Seed-Coder) at an unchanged success rate; Spanish lowers it by 0.03 and 0.21.
+
+| Model | Configuration | Success rate | ASL_pow | Change vs English | pass_drop | Tasks reaching 10 |
+| Qwen2.5-Coder-7B | English (baseline) | 0.7222 | 6.215 | – | 0.103 | 234 |
+| Qwen2.5-Coder-7B | Hindi | 0.7275 | 4.939 | −1.276 | 0.243 | 183 |
+| Qwen2.5-Coder-7B | Spanish | 0.7249 | 6.184 | −0.031 | 0.108 | 233 |
+| Seed-Coder-8B | English (baseline) | 0.7275 | 6.508 | – | 0.079 | 245 |
+| Seed-Coder-8B | Hindi | 0.7275 | 5.070 | −1.437 | 0.233 | 187 |
+| Seed-Coder-8B | Spanish | 0.7302 | 6.298 | −0.209 | 0.106 | 236 |
+
+Seed-Coder ranks above Qwen in all three languages, so the ranking does not change. Success rates differ by at most 0.006; cycle 1 has the same prompt everywhere, so this is run-to-run variation. For scale, the package's English records differ from my English runs by 0.13 (Qwen) and 0.05 (Seed-Coder) in ASL_pow. The Spanish changes are of that order, and the Hindi drops are over ten times larger. Most failed loops fail at the first summary (cycle 2): Hindi 67 of 92 and 63 of 88, Spanish 33 of 41 and 27 of 40, English 30 of 39 and 26 of 30. Of the tasks the English run kept for 10 cycles, Hindi lost 57 and 68 after cycle 1 and Spanish lost 15 and 21. Going the other way (10 cycles in the extension, failed after cycle 1 in English), the counts are 6 and 10 for Hindi and 14 and 12 for Spanish.
+
+Manual inspection. I read 20 extension loops: in each Hindi and Spanish run, the first five tasks in MBPP+ order that passed cycle 1 and then failed. For comparison I read the first five such loops of each English run. For each loop I compared the failing cycle's prompt with the previous passing code and the failing code.
+
+| Failure mode | Hindi (10) | Spanish (10) | English (10) |
+| Summary drops or changes a requirement | 4 | 8 | 7 |
+| Summary garbled or in mixed scripts, task no longer stated | 5 | 0 | 0 |
+| Correct summary, the model's new code is wrong | 1 | 2 | 3 |
+
+- Spanish fails like English: a fluent summary loses one detail. "Triangular prism" became "prisma rectangular" for both models (Mbpp/14), and "split on the space character" became "una lista de palabras" (Qwen, Mbpp/118). In English, "count true booleans" became "count the number of elements" (Seed-Coder, Mbpp/105).
+- Hindi adds a mode missing from the English sample: half of the inspected Hindi summaries no longer state the task. Qwen on Mbpp/9 "adds the number of the sequence that starts at the beginning of the word". Three of the ten mix in other scripts: Cyrillic in Qwen Mbpp/6, and Latin, Bengali and Chinese characters in Seed-Coder Mbpp/61. A rough automatic check found repeated-word summaries only in Hindi: 55 for Qwen and 149 for Seed-Coder.
+- The assert line does not stop drift: judging by reading the code, 8 of the 20 failing programs still satisfy the prompt's own example. For instance, Seed-Coder in Hindi sorts the rows of Mbpp/12 by their first values, which gives the example's order. In the other 12, the model followed the summary although the example contradicted it. No inspected failure came from over-reliance on the assert line.
+- Not every failure comes from the language: 9 of the 20 tasks also failed after cycle 1 in the English run. Qwen's failing cycle-2 code for Mbpp/6 is identical in English and Hindi.
+- Formatting: models often copied the assert line into their code, in English too. When that code was wrong, the copy failed at import and EvalPlus recorded no per-test results (5 of 20 extension loops, 3 of 10 English ones). The pass/fail outcome is the same.
+
+Broken by the extension: Mbpp/14 (volume of a triangular prism, assert find_Volume(10,8,6) == 240). Both English runs kept "triangular prism" for 10 cycles, and all four extension runs failed at cycle 2 or 3. In Spanish both models wrote "prisma rectangular" and dropped the division by 2. In Hindi, Qwen dropped the shape, and Seed-Coder wrote "the area of a triangle" and returned Heron's formula. In all four, the prompt's own example contradicts the new code.
+
+Not broken: Mbpp/2 (shared elements of two lists). Qwen's Hindi summary "दो टूपल में समान तत्त्वों का एक नया टूपल देता है" ("returns a new tuple of the common elements of two tuples") stayed word for word the same from cycle 2 to 10. The task reached 10 cycles in all six runs, as did 134 of the 378 tasks.
+
+What the extension shows. An English-only loop overstates how well these models keep a task described in Hindi. Cycle-1 accuracy is the same, but ASL_pow is 1.3 to 1.4 lower, and part of the loss comes from summaries that no longer carry the task, which the English loop does not produce. Spanish shows nothing beyond run-to-run variation, and its failures follow the English modes. This is the opposite of what I expected for Hindi; for Spanish it matches.
+
+5. Limitations and implications
+
+The Hindi effect is larger than the threats below can explain; the Spanish effect is not.
+
+- Run-to-run variation: the same cycle-1 prompt at temperature 0 gave different code in the Hindi and Spanish runs of the same model (28 tasks for Qwen, 26 for Seed-Coder), with a different pass/fail result on 3 and 1. The data does not show the cause. With one run per configuration, the Spanish changes cannot be separated from this variation.
+- Prompt wording: the instruction stays in English and the opening phrase is a translation, so language and wording change together. Qwen did not use the opening phrase in 29 Hindi and 59 Spanish summaries (automatic check).
+- Test-suite strength: the plus tests catch drift that the 3 base tests miss (Qwen, Spanish, Mbpp/118 failed only plus tests, 21 of 106). But passing tests does not show that the summary still states the task. Seed-Coder in Hindi sustained Mbpp/17 for 10 cycles, although from cycle 3 its summaries say "uses a verification code for the verification of a success" or repeat one word. The name square_perimeter and the assert example carried the task.
+- Contamination: MBPP+ is public, so the models may know these tasks, and a function name may be enough to recall one, as Mbpp/17 suggests. The data cannot measure this.
+- Subset and inspection: all 378 tasks were run. The 30 inspected loops are the first five per run, not a random sample, and one reader labelled them. The English glosses are approximate, and the language checks are rough heuristics.
+- Model choice: two open 7B and 8B code models whose ASL_pow differs by 0.11 to 0.29, so the ranking result says little in general.
+- Baseline choice: I re-ran English instead of using the package. Its task_prompts.md documents a "detailed description" prompt, but its summaries for these models start with "write a python function" (2523 of 2571 for Qwen, 2614 of 2614 for Seed-Coder).
+
+Implications. For these models on MBPP+, self-consistency measured in English did not carry over to Hindi, so an evaluation for users who describe tasks in another language should run the loop in that language. Survival alone can also overstate self-consistency: a loop can survive on the assert line after its summaries stop stating the task. A check that the summaries still state the task, which the repository's judge-weighted ASL attempts, is needed before reading long survival as robustness.

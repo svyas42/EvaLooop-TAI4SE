@@ -1,0 +1,414 @@
+====================================================================================================
+qwen hindi | Mbpp/6 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check whether the two numbers differ at one bit position only or not.
+assert differ_At_One_Bit_Pos(13,9) == True
+"""
+-- code of cycle 1 (passed):
+def differ_At_One_Bit_Pos(x, y): 
+    return (x ^ y) and not ((x ^ y) & ((x ^ y) - 1))
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो दो अंकों को एक बिट पозिशन पर अलग करने की क्षमता देता है।
+-- code of cycle 2 (failed): base ok (0/6 failing), plus FAIL (19/108 failing)
+def differ_At_One_Bit_Pos(x, y):
+    return (x ^ y) & ((x ^ y) - 1) == 0
+====================================================================================================
+qwen hindi | Mbpp/9 | failed at cycle 2 | English run of same model sustained 2
+-- original prompt:
+"""
+Write a python function to find the minimum number of rotations (greater than 0) required to get the same string.
+assert find_Rotations("aaaa") == 1
+"""
+-- code of cycle 1 (passed):
+def find_Rotations(s):
+    n = len(s)
+    for i in range(1, n):
+        if s[i:] + s[:i] == s:
+            return i
+    return n
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक शब्द के अनुक्रमों में उस अनुक्रम का नंबर जोड़ा देता है जो शब्द के आरम्भ से शुरू होता है।
+-- code of cycle 2 (failed): base FAIL (2/3 failing), plus FAIL (99/101 failing)
+def find_Rotations(s):
+    n = len(s)
+    for i in range(n):
+        if s[i:] + s[:i] == s:
+            return i + 1
+    return -1
+====================================================================================================
+qwen hindi | Mbpp/14 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a python function to find the volume of a triangular prism.
+assert find_Volume(10,8,6) == 240
+"""
+-- code of cycle 1 (passed):
+def find_Volume(base, height, length):
+    return (base * height * length) / 2
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो आधार, ऊंचाई और लंबाई के परिमाणों का आयतन निकलें।
+-- code of cycle 2 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+def find_Volume(base, height, length):
+    return base * height * length
+
+# Test the function with the provided test case
+assert find_Volume(10, 8, 6) == 240
+====================================================================================================
+qwen hindi | Mbpp/56 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a python function to check if a given number is one less than twice its reverse.
+assert check(70) == False
+"""
+-- code of cycle 1 (passed):
+def check(n):
+    rev = 0
+    temp = n
+    while temp > 0:
+        rev = (rev * 10) + (temp % 10)
+        temp = temp // 10
+    return (2 * rev - 1 == n)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक दिए गए संख्या को इस प्रकार जांचता है कि इसका विपरीत दोगुना में 1 घटा करने पर आपने दिए गए संख्या प्राप्त होता है।
+-- code of cycle 2 (failed): base FAIL (1/3 failing), plus FAIL (1/125 failing)
+def check(n):
+    return (n * 2 - 1) == n
+====================================================================================================
+qwen hindi | Mbpp/59 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a function to find the nth octagonal number.
+assert is_octagonal(5) == 65
+"""
+-- code of cycle 1 (passed):
+def is_octagonal(n):
+    return n * (3 * n - 2)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक संख्या को आठकों विशेष रूप में व्यक्तिकरण करने के लिए इस्तेमाल करता है।
+-- code of cycle 2 (failed): base FAIL (3/3 failing), plus FAIL (99/101 failing)
+def is_octagonal(n):
+    k = 1
+    while True:
+        octagonal_number = k * (3 * k - 1) // 2
+        if octagonal_number == n:
+            return True
+        elif octagonal_number > n:
+            return False
+        k += 1
+====================================================================================================
+qwen spanish | Mbpp/6 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check whether the two numbers differ at one bit position only or not.
+assert differ_At_One_Bit_Pos(13,9) == True
+"""
+-- code of cycle 1 (passed):
+def differ_At_One_Bit_Pos(x, y): 
+    return (x ^ y) and not ((x ^ y) & ((x ^ y) - 1))
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+escribe una función en Python para determinar si dos números enteros difieren en exactamente una posición de bit.
+-- code of cycle 2 (failed): base FAIL (5/6 failing), plus FAIL (14/108 failing)
+def differ_At_One_Bit_Pos(x, y): 
+    return (x ^ y) and not ((x ^ y) & (x ^ y - 1))
+====================================================================================================
+qwen spanish | Mbpp/14 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a python function to find the volume of a triangular prism.
+assert find_Volume(10,8,6) == 240
+"""
+-- code of cycle 1 (passed):
+def find_Volume(base, height, length):
+    return (base * height * length) / 2
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+escribe una función en Python para calcular el volumen de un prisma rectangular.
+-- code of cycle 2 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+def find_Volume(length, width, height):
+    return length * width * height
+
+# Test the function with the provided test case
+assert find_Volume(10, 8, 6) == 240
+====================================================================================================
+qwen spanish | Mbpp/106 | failed at cycle 3 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to append the given list to the given tuples.
+assert add_lists([5, 6, 7], (9, 10)) == (9, 10, 5, 6, 7)
+"""
+-- code of cycle 2 (passed):
+def add_lists(list1, tuple1):
+    return tuple1 + tuple(list1)
+-- summary written in cycle 2 (raw) = prompt of failing cycle:
+escribe una función en Python para combinar una lista y una tupla, devolviendo una nueva tupla.
+-- code of cycle 3 (failed): base FAIL (3/3 failing), plus FAIL (115/115 failing)
+def add_lists(lst, tpl):
+    return tuple(tpl + lst)
+====================================================================================================
+qwen spanish | Mbpp/118 | failed at cycle 3 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a function to convert a string to a list of strings split on the space character.
+assert string_to_list("python programming")==['python','programming']
+"""
+-- code of cycle 2 (passed):
+def string_to_list(text):
+    return text.split(' ')
+-- summary written in cycle 2 (raw) = prompt of failing cycle:
+escribe una función en Python para convertir un string en una lista de palabras.
+-- code of cycle 3 (failed): base ok (0/3 failing), plus FAIL (21/106 failing)
+def string_to_list(s):
+    return s.split()
+====================================================================================================
+qwen spanish | Mbpp/125 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.
+assert find_length("11000010001") == 6
+"""
+-- code of cycle 1 (passed):
+def find_length(s):
+    max_diff = 0
+    current_diff = 0
+    for char in s:
+        if char == '0':
+            current_diff += 1
+        else:
+            current_diff -= 1
+        if current_diff < 0:
+            current_diff = 0
+        max_diff = max(max_diff, current_diff)
+    return max_diff
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+escribe una función en Python para encontrar la longitud máxima de una subcadena donde el número de '0's es igual al número de '1's.
+-- code of cycle 2 (failed): base FAIL (3/3 failing), plus FAIL (100/102 failing)
+def find_length(s):
+    count = 0
+    max_length = 0
+    count_dict = {0: -1}
+    
+    for i, char in enumerate(s):
+        if char == '0':
+            count += 1
+        else:
+            count -= 1
+        
+        if count in count_dict:
+            max_length = max(max_length, i - count_dict[count])
+        else:
+            count_dict[count] = i
+    
+    return max_length
+====================================================================================================
+seed hindi | Mbpp/9 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to find the minimum number of rotations (greater than 0) required to get the same string.
+assert find_Rotations("aaaa") == 1
+"""
+-- code of cycle 1 (passed):
+def find_Rotations(s):
+    return 1 if len(set(s)) == 1 else len(s)
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक स्ट्रिंग के सभी पossibility की संख्या को निकालता है और यदि सभी अक्षरों के साथ स्ट्रिंग का पुनरावृत्ति है तो 1 को लौटाता है।
+-- code of cycle 2 (failed): base FAIL (2/3 failing), plus FAIL (99/101 failing)
+def find_Rotations(s):
+    return 1 if len(set(s)) == 1 else 0
+====================================================================================================
+seed hindi | Mbpp/12 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a function to sort a given matrix in ascending order according to the sum of its rows.
+assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+"""
+-- code of cycle 1 (passed):
+def sort_matrix(matrix):
+    return sorted(matrix, key=lambda row: sum(row))
+
+assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]]) == [[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक मैट्रिक्स को प्राप्त करता है और वे को प्रारंभिक मानों के अनुसार क्रमबद्ध करता है।
+-- code of cycle 2 (failed): base FAIL (1/3 failing), plus FAIL (8/106 failing)
+def sort_matrix(matrix):
+    return sorted(matrix, key=lambda row: (row[0], row[1], row[2]))
+
+assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]]) == [[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+====================================================================================================
+seed hindi | Mbpp/14 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a python function to find the volume of a triangular prism.
+assert find_Volume(10,8,6) == 240
+"""
+-- code of cycle 1 (passed):
+def find_Volume(base, height, length):
+    return 0.5 * base * height * length
+
+assert find_Volume(10, 8, 6) == 240
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक त्रिकोण का क्षेत्रफल को निकालता है और दिए गए पैरामीटरों के अनुसार क्षेत्रफल को लौटाता है।
+-- code of cycle 2 (failed): base FAIL (3/3 failing), plus FAIL (108/108 failing)
+import math
+
+def find_Volume(a, b, c):
+    s = (a + b + c) / 2
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+    return area
+====================================================================================================
+seed hindi | Mbpp/56 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check if a given number is one less than twice its reverse.
+assert check(70) == False
+"""
+-- code of cycle 1 (passed):
+def check(n):
+    return n == 2 * int(str(n)[::-1]) - 1
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक नमूना की संख्या की जांच करता है जो दो संख्या के साथ समान है और एक संख्या को पूरा करता है।
+-- code of cycle 2 (failed): base FAIL (1/3 failing), plus FAIL (5/125 failing)
+def check(num):
+    return num % 10 == 0 and num // 10 % 10 == num % 10
+====================================================================================================
+seed hindi | Mbpp/61 | failed at cycle 3 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a python function to count the number of substrings with the sum of digits equal to their length.
+assert count_Substrings('112112') == 6
+"""
+-- code of cycle 2 (passed):
+def count_Substrings(s):
+    count = 0
+    n = len(s)
+    for i in range(n):
+        sum_digits = 0
+        for j in range(i, n):
+            sum_digits += int(s[j])
+            if j - i + 1 == sum_digits:
+                count += 1
+    return count
+-- summary written in cycle 2 (raw) = prompt of failing cycle:
+एक पायथन फ़ंक्शन लिखें जो एक स्ट्रिंग के सभी सাবस्ट्रिंगों की संख्या की गिनती करता है जो अपनी लENGTH के बराबर है से其后 के सभी अंकों का सम जानता है।
+-- code of cycle 3 (failed): base FAIL (2/3 failing), plus FAIL (102/102 failing)
+def count_Substrings(s):
+    count = 0
+    n = len(s)
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            if j - i <= int(s[i:j]):
+                count += 1
+    return count
+====================================================================================================
+seed spanish | Mbpp/12 | failed at cycle 4 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a function to sort a given matrix in ascending order according to the sum of its rows.
+assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+"""
+-- code of cycle 3 (passed):
+def sort_matrix(matrix):
+    return sorted(matrix, key=sum)
+
+assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]]) == [[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+-- summary written in cycle 3 (raw) = prompt of failing cycle:
+escribe una función en Python para ordenar una lista de matrices por la suma de sus elementos.
+-- code of cycle 4 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+def sort_matrix(matrices):
+    return sorted(matrices, key=lambda matrix: sum(sum(row) for row in matrix))
+
+assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]]) == [[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+====================================================================================================
+seed spanish | Mbpp/14 | failed at cycle 3 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a python function to find the volume of a triangular prism.
+assert find_Volume(10,8,6) == 240
+"""
+-- code of cycle 2 (passed):
+def find_Volume(base, altura, longitud):
+    return (base * altura * longitud) / 2
+
+assert find_Volume(10, 8, 6) == 240
+-- summary written in cycle 2 (raw) = prompt of failing cycle:
+escribe una función en Python para calcular el volumen de un prisma rectangular, dadas las dimensiones de la base y la altura, y la longitud del prisma.
+-- code of cycle 3 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+def find_Volume(base, height, length):
+    return base * height * length
+
+assert find_Volume(10, 8, 6) == 240
+====================================================================================================
+seed spanish | Mbpp/56 | failed at cycle 2 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a python function to check if a given number is one less than twice its reverse.
+assert check(70) == False
+"""
+-- code of cycle 1 (passed):
+def check(n):
+    return n == 2 * int(str(n)[::-1]) - 1
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+escribe una función en Python para verificar si un número es un número de Kaprekar.
+-- code of cycle 2 (failed): base FAIL (1/3 failing), plus FAIL (7/125 failing)
+def check(n):
+    d = len(str(n))
+    square = n * n
+    str_square = str(square).zfill(2 * d)
+    right = int(str_square[-d:])
+    left = int(str_square[:-d] or 0)
+    return left + right == n
+
+assert check(70) == False
+====================================================================================================
+seed spanish | Mbpp/98 | failed at cycle 3 | English run of same model sustained 1
+-- original prompt:
+"""
+Write a function to multiply all the numbers in a list and divide with the length of the list.
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+"""
+-- code of cycle 2 (passed):
+import math
+
+def multiply_num(numbers):
+    product = 1
+    for num in numbers:
+        product *= num
+    return product / len(numbers)
+
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+-- summary written in cycle 2 (raw) = prompt of failing cycle:
+escribe una función en Python para calcular el promedio ponderado de una lista de números, donde el promedio se calcula dividiendo el producto de todos los números entre la cantidad de números en la lista.
+-- code of cycle 3 (failed): base FAIL (0/0 failing), plus FAIL (0/0 failing)
+import math
+
+def multiply_num(numbers):
+    product = 1
+    for number in numbers:
+        product *= number
+    return product
+
+def weighted_average(numbers):
+    return multiply_num(numbers) / len(numbers)
+
+assert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)
+====================================================================================================
+seed spanish | Mbpp/100 | failed at cycle 2 | English run of same model sustained 10
+-- original prompt:
+"""
+Write a function to find the next smallest palindrome of a specified integer, returned as an integer.
+assert next_smallest_palindrome(99)==101
+"""
+-- code of cycle 1 (passed):
+def next_smallest_palindrome(n):
+    n += 1
+    while str(n) != str(n)[::-1]:
+        n += 1
+    return n
+-- summary written in cycle 1 (raw) = prompt of failing cycle:
+escribe una función en Python para encontrar el siguiente palíndromo más pequeño que un número dado.
+-- code of cycle 2 (failed): base FAIL (2/3 failing), plus FAIL (17/102 failing)
+def next_smallest_palindrome(n):
+    n -= 1
+    while True:
+        n += 1
+        if str(n) == str(n)[::-1]:
+            return n

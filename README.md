@@ -116,8 +116,17 @@ Results are saved as `{experiment_name}_{loop_type}_results.json`, and each resu
 | `evaloop/core/evaluator.py` | Joins `plus_details` only when the test result contains it | A test error result has no `plus_details`, so the old code raised `KeyError` and stopped the run; results are written only at the end, so the whole run was lost |
 | `evaloop/cli.py` | New `--loop_type` option | Selects the loop from the command line |
 | `tests/test_multilingual.py` (new) | Offline tests for the templates, the config wiring and the `KeyError` fix | The contributing guide asks for unit tests |
+| `scripts/make_summary_csv.py` (new) | Builds `summary.csv` from the six results files | Makes every number in `summary.csv` reproducible with one command |
 
 The loop runner (`evaloop/evaluation/cycle.py`), the task classes, the tester and the analysis code are unchanged. With the default `--loop_type`, the prompts and the results filename are the same as before.
+
+### Reproducing `summary.csv`
+
+```bash
+python scripts/make_summary_csv.py
+```
+
+`success_rate` is pass@1 and `asl_score` is `ASL_pow`, both computed with `evaloop/analysis/metrics.py` (max 10 cycles). Every row comes from a results file in `results_hindi_spanish/`: the `standard-mbpp-plus` rows from the standard-loop runs (default `--loop_type`), and the `summarization_hindi` and `summarization_spanish` rows from the multilingual runs. All six runs cover the same 378 MBPP+ tasks.
 
 ## 🛠️ CLI Reference
 
