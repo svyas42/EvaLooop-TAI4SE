@@ -87,7 +87,7 @@ Want to add your own loop? A new task type is one new file plus a registry entry
 
 ## 🌐 Multilingual Summarization Loops
 
-This fork adds two loop types in which the summaries are written in Hindi or Spanish instead of English. Everything else stays as in the standard loop, so on the same tasks a difference in ASL between the loops comes from the summary language.
+This fork ([github.com/svyas42/EvaLooop-TAI4SE](https://github.com/svyas42/EvaLooop-TAI4SE), forked from [evalooop/EvaLooop](https://github.com/evalooop/EvaLooop)) adds two loop types in which the summaries are written in Hindi or Spanish instead of English. Everything else stays as in the standard loop, so on the same tasks a difference in ASL between the loops comes from the summary language.
 
 | `--loop_type` | Summary language |
 |---|---|
