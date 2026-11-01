@@ -1,5 +1,7 @@
 # EvaLooop: LLM Robustness Evaluation Framework
 
+**Public fork:** [github.com/svyas42/EvaLooop-TAI4SE](https://github.com/svyas42/EvaLooop-TAI4SE), forked from [evalooop/EvaLooop](https://github.com/evalooop/EvaLooop). The Hindi and Spanish summarization loops added in this fork are described in [Multilingual Summarization Loops](#-multilingual-summarization-loops).
+
 [![arXiv](https://img.shields.io/badge/arXiv-2505.12185-b31b1b.svg)](https://arxiv.org/abs/2505.12185)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
