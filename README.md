@@ -117,16 +117,83 @@ Results are saved as `{experiment_name}_{loop_type}_results.json`, and each resu
 | `evaloop/cli.py` | New `--loop_type` option | Selects the loop from the command line |
 | `tests/test_multilingual.py` (new) | Offline tests for the templates, the config wiring and the `KeyError` fix | The contributing guide asks for unit tests |
 | `scripts/make_summary_csv.py` (new) | Builds `summary.csv` from the six results files | Makes every number in `summary.csv` reproducible with one command |
+| `scripts/report_numbers.py` (new) | Prints the other numbers in the report from the six results files and the run log | Makes the report's numbers reproducible with one command |
 
 The loop runner (`evaloop/evaluation/cycle.py`), the task classes, the tester and the analysis code are unchanged. With the default `--loop_type`, the prompts and the results filename are the same as before.
 
-### Reproducing `summary.csv`
+### Setup used for the reported runs
+
+- **Machine**: an NC State VCL virtual machine (Ubuntu 24, no root access) with one NVIDIA L40S GPU; `evaloop validate_setup` reported CUDA 12.8.
+- **Software**: Python 3.12.3 and vLLM 0.19.1; the models ran in bfloat16 through the repository's vLLM path.
+- **Models**:
+
+  | Hugging Face model | Data package id | Revision (from the run log) |
+  |---|---|---|
+  | `Qwen/Qwen2.5-Coder-7B-Instruct` | `qwen2.5-coder-7b-instruct` | `c03e6d358207e414f1eca0bb1891e29f1db0e242` |
+  | `ByteDance-Seed/Seed-Coder-8B-Instruct` | `seed-coder-8b-instruct` | `1c5af72afa21c22c9272a0b60a3a404195e88fcd` |
+
+- **Settings**: the CLI defaults (temperature 0.0, top-p 1.0, at most 1024 new tokens, context length 4096, at most 10 cycles) plus `--seed 42`, on all 378 MBPP+ tasks. No API key or LLM judge was used.
+
+Installation on the VM, from the home folder. Ubuntu's Python has no `ensurepip`, so the virtual environment is created without pip and pip is installed with `get-pip.py`:
+
+```bash
+git clone https://github.com/svyas42/EvaLooop-TAI4SE
+cd EvaLooop-TAI4SE
+python3 -m venv --without-pip .venv
+source .venv/bin/activate
+curl -sS https://bootstrap.pypa.io/get-pip.py | python
+pip install -e .
+pip install -e ".[vllm]"
+```
+
+When it starts, vLLM compiles GPU code with `gcc`, which needs `Python.h`. The VM did not have `python3.12-dev`, so the header files were unpacked into the home folder without root:
+
+```bash
+mkdir -p ~/pydev && cd ~/pydev
+apt download libpython3.12-dev python3.12-dev
+dpkg -x libpython3.12-dev_*.deb ~/pydev
+dpkg -x python3.12-dev_*.deb ~/pydev
+cd ~/EvaLooop-TAI4SE
+```
+
+### Running the six runs
+
+In every new terminal, first run:
+
+```bash
+source .venv/bin/activate
+export CPATH=$HOME/pydev/usr/include/python3.12:$HOME/pydev/usr/include
+```
+
+Then, from the repository root, one run at a time (in the order they were run):
+
+```bash
+evaloop evaluate --model "Qwen/Qwen2.5-Coder-7B-Instruct" --loop_type "summarization_hindi" --seed 42
+evaloop evaluate --model "Qwen/Qwen2.5-Coder-7B-Instruct" --loop_type "summarization_spanish" --seed 42
+evaloop evaluate --model "ByteDance-Seed/Seed-Coder-8B-Instruct" --loop_type "summarization_hindi" --seed 42
+evaloop evaluate --model "ByteDance-Seed/Seed-Coder-8B-Instruct" --loop_type "summarization_spanish" --seed 42
+evaloop evaluate --model "Qwen/Qwen2.5-Coder-7B-Instruct" --seed 42
+evaloop evaluate --model "ByteDance-Seed/Seed-Coder-8B-Instruct" --seed 42
+```
+
+The last two are the English baseline (default `--loop_type`). Each run writes `results/evaloop_<model>_mbpp_plus_<date>_<time>_<loop_type>_results.json` and adds to `logs/evaloop.log`. The generated code runs only inside EvalPlus on the VM. The six results files and the log were then copied into `results_hindi_spanish/`. There, `evaloop (1).log` covers all six runs, and `evaloop.log` is an earlier copy that covers only the four multilingual runs.
+
+A rerun will not give exactly the same files. The file names get new timestamps, so `RUNS` in `scripts/make_summary_csv.py` has to list the new names. The numbers can also differ a little: at temperature 0, the same cycle-1 prompt gave different code in the Hindi and Spanish runs of the same model (printed by `scripts/report_numbers.py`).
+
+### Reproducing the reported numbers
+
+From the repository root, after `pip install -e .` (no GPU or model needed):
 
 ```bash
 python scripts/make_summary_csv.py
+python scripts/report_numbers.py
+python scripts/report_numbers.py --data_dir /path/to/assignment4-data
 ```
 
-`success_rate` is pass@1 and `asl_score` is `ASL_pow`, both computed with `evaloop/analysis/metrics.py` (max 10 cycles). Every row comes from a results file in `results_hindi_spanish/`: the `standard-mbpp-plus` rows from the standard-loop runs (default `--loop_type`), and the `summarization_hindi` and `summarization_spanish` rows from the multilingual runs. All six runs cover the same 378 MBPP+ tasks.
+- `make_summary_csv.py` writes `summary.csv`. `success_rate` is pass@1 and `asl_score` is `ASL_pow`, both computed with `evaloop/analysis/metrics.py` (max 10 cycles). Every row comes from a results file in `results_hindi_spanish/`: the `standard-mbpp-plus` rows from the standard-loop runs (default `--loop_type`), and the `summarization_hindi` and `summarization_spanish` rows from the multilingual runs. All six runs cover the same 378 MBPP+ tasks.
+- `report_numbers.py` prints the report's other numbers from the same files: the results table (including the change against English, `pass_drop` and the tasks reaching 10 cycles), the failed loops that fail at cycle 2, the tasks lost or gained against English, the example tasks (Mbpp/14, Mbpp/2, Mbpp/17, Mbpp/118), the cycle-1 differences between runs, the summary checks (repeated words, missing opening phrase), the inspected loops chosen by the selection rule with the counts taken from them, and the run times from `results_hindi_spanish/evaloop (1).log`.
+- With `--data_dir`, `report_numbers.py` also compares the runs with the assignment data package (its ASL_pow for the two models, and how many of its summaries start with "write a python function"). The data package is not part of this repository.
+- The failure-mode labels of the inspected loops come from reading the loops and are not computed.
 
 ## 🛠️ CLI Reference
 
